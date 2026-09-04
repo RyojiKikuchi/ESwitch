@@ -104,16 +104,23 @@ static void button_wait(uint8_t button_status) {
 /* ============================================================
  *  ボタンの状態をチェック
  *  チャタリング判定期間ボタンの状態が維持され続けたら1を返却
+ *  ボタンの状態が変更されたらTMR0をリセットする
  *   0: Push, 1:Release 
  * ============================================================ */
 static uint8_t button_check(uint8_t button_status) {
     TMR0 = 0;
+    uint8_t current_button = SW_PIN;
+    uint8_t prev_button = current_button;
+    uint8_t ret = current_button == button_status ? 1 : 0;
     while (TMR0 < BUTTON_PRESS_DETECTION_TMR0) {
-        if (SW_PIN != button_status) {
-            return 0;
+        current_button = SW_PIN;
+        if (current_button != prev_button) {
+            TMR0 = 0;
+            prev_button = current_button;
+            ret = current_button == button_status ? 1 : 0;
         }
     }
-    return 1;
+    return ret;
 }
 
 /* ============================================================
