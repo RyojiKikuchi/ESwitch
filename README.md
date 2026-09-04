@@ -62,11 +62,11 @@ PIC10F200を使用した、モーメンタリスイッチでリレー接点（NC
 ### 3. 出力更新（`set_gpio`）
 
 - `sw_state = 0`（NC側）:
-  - GP0=0（リレーOFF側）
+  - GP0=0（接点はNC側）
   - GP1=1（NC LED ON）
   - GP2=0（NO LED OFF）
 - `sw_state = 1`（NO側）:
-  - GP0=1（リレーON側）
+  - GP0=1（接点はNO側）
   - GP1=0（NC LED OFF）
   - GP2=1（NO LED ON）
 
