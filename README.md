@@ -84,3 +84,5 @@ MPLAB X + XC8環境でビルドしてください。
 ## ライセンス
 
 MITライセンス
+
+詳細は `/home/runner/work/ESwitch/ESwitch/LICENSE` を参照してください。
